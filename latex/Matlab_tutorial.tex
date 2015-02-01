@@ -1,0 +1,327 @@
+\documentstyle[11pt]{report}
+\renewcommand{\baselinestretch}{1.1}
+\input handout_header
+
+\begin{center} \mbox{\sc
+Matlab tutorial - Math 4450/5450 - Spring 2015 - Zirbel}\\
+\end{center}
+
+\renewcommand{\blist}[1]{\begin{list}{{\arabic{enumi}:}}{\usecounter{enumi}\setlength{\itemsep}{#1}}}
+\renewcommand{\elist}{\end{list}}
+
+When you start Matlab, the {\bf command window} appears, with $\gg$ as the prompt.
+The commands below should be typed at the prompt.
+Don't type the line numbers or the comments at the ends of the lines.
+
+\vspace*{0.2in}
+\hspace*{-0.3in}
+{\bf Matlab basics}
+\vspace*{-0.07in}
+\blist{-0.05in}
+\item {\tt 2*9}       \hfill Matlab can be used as a calculator.
+\item {\tt sin(1)}
+\item {\tt 2\^{}999}
+\item {\tt x=sin(1)}  \hfill You can store values with variable names.
+\item {\tt x}         \hfill This displays the value of {\tt x}
+\item {\tt x=rand(10,1)} \hfill {\tt x} is a collection of 10 random
+numbers, uniformly distributed between 0 and 1.  {\tt x} is like a column
+of cells in a spreadsheet.  It is called a {\bf vector} or a 10 by 1 {\bf
+matrix}.
+\item {\tt x+5}       \hfill Add 5 to each entry of {\tt x}.
+\item {\tt 1000*x}       \hfill Multiply each entry of {\tt x} by 100.
+\item {\tt x=rand(10,7)} \hfill A 10 by 7 matrix of random numbers.  To repeat this, or any other command, hit the up arrow as many times as you want.
+\item {\tt x=rand(100,1)} \hfill Go ahead, try something larger than 100.
+\item {\tt x=rand(100,1);} \hfill Use a semicolon to suppress the output.
+\item {\tt max(x)} \hfill
+\item {\tt mean(x)} \hfill
+\item {\tt sum(x)} \hfill
+\item {\tt median(x)} \hfill
+\item {\tt cumsum(x)} \hfill A vector of cumulative sums of entries of {\tt x}.
+\item {\tt y=sort(rand(10,1))} \hfill Sort another 10 random numbers.
+\item {\tt plot(x)} \hfill Plot the values of {\tt x} against numbers 1, 2, ...
+\item {\tt hist(x)} \hfill Make a histogram of the values of {\tt x}.
+\item {\tt hist(x,30)} \hfill Use 30 bins instead of the default 10.
+\item {\tt y=-log(x)} \hfill Take the natural logarithm of the entries of
+{\tt x}.
+\item {\tt hist(y,30)} \hfill Most of the values of {\tt y} are near 0, but
+some are as large as 6.  The numbers in {\tt y} have what is called the
+{\bf exponential distribution}.
+\item {\tt x=rand(10000,1)} \hfill You typed a command similar to this a
+while ago.  Type {\tt x=} and then the up arrow to bring it back, then edit
+it to change 100 to 10000.
+\item {\tt z=randn(1000,1);} \hfill Generate 1000 normally distributed numbers
+\item {\tt hist(z,30)} \hfill The histogram is bell--shaped.  You might
+want to try this with more than 1000 numbers.
+
+\hspace*{-0.5in}
+{\bf Getting some Matlab programs}
+
+\item Launch Internet Explorer and open {\tt
+www-math.bgsu.edu/\~{}zirbel/chem694} 
+This site contains brief descriptions of all the programs and links to
+those programs.
+
+\item Click the link for {\tt allfiles.tar}.
+
+\item Internet Explorer's Download Manager will appear and the file
+{\tt allfiles.tar} will be stored in some strange folder somewhere.
+
+\item In Download Manager, double click {\tt allfiles.tar}, then click on
+the button Reveal in Finder.  Now you can see where {\tt allfiles.tar} was
+put.
+
+\item Stuffit Expander should have already untarred the file {\tt
+allfiles.tar} and put the various files it contains into a folder called
+something like allfiles Folder.
+
+\item Drag this folder onto the desktop.  If you look at the contents, you
+will see a bunch of .m files, which the Macintosh incorrectly assumes are
+Mathematica files.
+
+\item Start Matlab by pulling down the Apple menu, Applications, Matlab
+5.2.
+
+\item In Matlab, File, Open, Desktop, allfiles Folder, and select something
+like dice.m.
+
+\item Once you have opened one program from this folder, you can run any
+program from this folder by typing its name in the Matlab command window.
+
+\hspace*{-0.5in}
+{\bf Coin flipping}
+
+\item {\tt 3<5} \hfill The answer is 1 because the inequality is satisfied.
+\item {\tt 5<3} \hfill The answer is 0.
+\item {\tt x>0.5} \hfill Check the inequality for each entry of x.  
+\item {\tt z=1+(x>0.5)} \hfill {\tt z} will equal 1 or 2.  This is
+like flipping coins, with 1 for heads and 2 for tails.
+\item {\tt show(z,'HT')} \hfill Use a program called {\tt show},
+which needs two arguments, a vector of integers greater than 0 and a string
+to tell what letters to use to display each number.
+\item {\tt show(1+(rand(1500,1)>0.5),'HT')} \hfill Generate 1500 coin
+flips.  Now press the up arrow and return, repeatedly.  That's a lot of
+coin flips!  What is the longest run of heads that you can find?
+\item {\tt show(1+(rand(1500,1)>0.5),'O-')} \hfill You can make that
+question easier to answer with different characters.  Use the up arrow so
+you can simply edit the previous command.
+
+This works well enough for coin flipping, in which there are only two
+outcomes.  But for other random experiments like rolling a die, a program
+called {\tt rando.m} is more useful.
+
+\item {\tt d=[1 1 1 1 1 1]/6} \hfill A row vector (1 by 6 matrix)
+of probabilities for the outcomes of rolling a die.
+\item {\tt sum(d)} \hfill Make sure these sum to 1!
+\item {\tt rando(d)} \hfill Use these probabilities to simulate rolls of a
+die.  Use the up arrow to repeat this command several times.
+
+\hspace*{-0.5in}
+{\bf Writing a Matlab program}
+
+We are going to create a new Matlab program called {\tt dna\_roll.m}, which
+will simulate a sequence of A,C,G,T which is supposed to look like DNA.
+
+At the top of the command window is a blank white sheet; click on that to
+open a new editor window.
+In that window, type the commands below on separate lines, then save the
+program as {\tt dna\_roll.m} by clicking on the disk icon.
+
+\item {\tt dna=[1 1 1 1]/4;} \hfill Probabilities for each of the four letters.
+\item {\tt for i=1:400} \hfill What comes next will be repeated 400 times.
+\item {\tt ~~x(i) = rando(dna);} \hfill Generate a number from 1 to 4.
+\item {\tt end} \hfill The end of the commands to repeat 400 times.
+\item {\tt show(x,'ACGT')} \hfill Translate the numbers into these letters.
+\item {\tt hist(x,4)} \hfill Histogram the four values in {\tt x}.
+
+Back in the command window, type {\tt dna\_roll} to run the program, then
+the up arrow to run it again and again.
+If there is an error, check to see that you have typed everything correctly.
+
+\item {\tt show(1+(x==1),' A')} \hfill For fun, display just the {\tt
+A} entries.  Can you get just the {\tt T}'s?
+
+We might want to simulate sequences in which {\tt A} occurs twice as
+often as any other letter.
+To do this, modify the definition of the vector {\tt dna} and then run the
+program a bunch of times.
+
+\item {\tt dna=[2 1 1 1]/5;} \hfill The entries still sum to 1.
+
+\hspace*{-0.5in}
+{\bf Markov chains}
+
+\item {\tt M=rand(6,6)} \hfill A 6 by 6 matrix of random numbers.
+\item {\tt M(2,:)} \hfill Pull out the second row of the matrix.
+\item {\tt M(:,4)} \hfill Pull out the fourth column of the matrix.
+\item {\tt diag(M)} \hfill Pull out the diagonal entries of the matrix.
+\item {\tt sum(M)} \hfill Sum the columns of the matrix.
+\item {\tt sum(M')'} \hfill Sum the rows of the matrix.  The apostrophe
+denotes {\bf transpose}.
+
+So far, each letter in the sequence has no relation or dependence to the
+letters before it, just like when you flip a coin or roll a die.
+The letters are said to be {\bf independent}.
+
+However, we should be able to set up a situation in which an {\tt A} is
+usually followed by an {\tt A} but never by a {\tt T}.
+After the letter {\tt A}, we could use the vector {\tt [0.6 0.2 0.2 0]} to
+choose the next letter.
+After the letter {\tt C}, we could use a {\bf different} vector, etc.
+
+To do this, we'll create a new program called {\tt dna\_markov.m}.
+Open a new editor window and type the following commands.
+Note that the vector for the Markov chain is called Pi, as in the textbook.
+
+\item {\tt A=[[0.6 0.2 0.2 0]; [0 0.6 0.2 0.2]; [0.2 0 0.6 0.2]; [0.2 0.2 0
+0.6]];} \hfill {\tt A} is a 4 by 4 matrix.
+Each row tells the probabilities we are going to use for the next letter.
+Row 1 tells what probabilities to use after the number 1 (corresponding to
+the letter {\tt A}), row 2 tells what probabilities to use after the number
+2 (for {\tt C}), and so on.
+\item {\tt Pi(1) = rando([1 1 1 1]/4);} \hfill Choose the first state randomly.
+\item {\tt for i=1:399,} \hfill
+\item {\tt ~~Pi(i+1) = rando(A(Pi(i),:));} \hfill Pull out row {\tt Pi(i)} of
+the matrix {\tt A} and use these as the probabilities to generate the next
+state. 
+\item {\tt end} \hfill
+\item {\tt show(Pi,'ACGT');} \hfill
+\item {\tt hist(Pi,4);} \hfill
+
+After you run this a few times, you might want to be able to generate
+longer strings of letters all at once.
+A good way to do that is to make {\tt dna\_markov.m} into a {\bf Matlab
+function}, so that you can call it with a parameter (pass an argument to
+it).
+To do this, add the following line to the top of {\tt dna\_markov.m}:
+
+\item {\tt function [Pi] = dna\_markov(n)} \hfill Then {\tt dna\_markov} is
+a function which needs a parameter {\tt n} (the length of the sequence to
+generate) and returns a vector {\tt Pi}.
+\item Change {\tt 399} to {\tt n-1}.
+
+For a function, the variables it introduces, like {\tt Pi}, are internal to
+the function unless they are explicitly passed back when the function is
+done.
+Just like the functions {\tt sin} and {\tt rand}, the function {\tt
+dna\_markov} gives back a value, the vector {\tt Pi}.
+When you go back to the command window to run it, type this:
+
+\item {\tt Pi=dna\_markov(4000);} \hfill Semicolon to suppress displaying
+{\tt Pi} itself.
+However, {\tt dna\_markov} uses {\tt show} to display {\tt Pi}.
+You might want to ``comment out'' that line by putting a {\tt \%} at the
+beginning of it:
+
+\item {\tt \%show(Pi,'ACGT');} \hfill
+
+\hspace*{-0.5in}
+{\bf Counting actual transitions}
+
+The transition matrix {\tt A} says that the letter {\tt C} should be
+followed by {\tt G} 60\% of the time, but in any given
+sequence, the actual observed frequency will be slightly different from
+that.
+The program {\tt transition\_count.m} will count up how many times each
+transition occurs and display the frequency of each transition.
+
+\item {\tt transition\_count(Pi,'ACGT');} \hfill
+
+Running {\tt dna\_markov} with a large argument (like 10000) will make the
+actual transition frequencies close to those in the matrix {\tt A}.
+
+You might want to add {\tt transition\_count} to the end of {\tt
+dna\_markov}.
+
+\hspace*{-0.5in}
+{\bf Using DNA data to specify the parameters in a DNA model}
+
+{\tt transition\_count} is especially useful when you have a set of actual
+DNA data and want to make a Markov model for it.
+You should go through the data, count transitions, and make a transition
+matrix {\tt A} based on that.
+
+On page 50 of {\em Biological Sequence Analysis}, there are two transition
+matrices from DNA data, one marked + for transitions within CpG islands and
+the other marked $-$ for non--CpG islands.
+
+In the program {\tt dna\_markov}, below the definition of the matrix {\tt
+A}, type a different definition, the matrix for the + region, as shown on
+page 50:
+
+\item {\tt A=[[0.180 0.274 0.426 0.120]; [0.171 0.368 0.274 0.188]; [0.161
+0.339 0.375 0.125]; [0.079 0.355 0.384 0.182]];} \hfill
+
+Now run {\tt dna\_markov} and {\tt transition\_count}.
+You should see that {\tt C} and {\tt G} occur more frequently than {\tt A}
+and {\tt T}.
+
+\pagebreak
+
+\hspace*{-0.5in}
+{\bf Hidden Markov models}
+
+Chapter 3 discusses how DNA appears to switch back and forth between CpG
+islands and regular DNA.
+As a simple example of such a phenomenon, we can write a program that
+simulates a casino switching between a fair and loaded die.
+
+Because switching the dice is hard to do without the gamblers noticing, it
+isn't done that often; usually the fair die is used several times in a row,
+then the loaded die, then the fair die, etc.
+This can be modeled as a Markov chain having two states.
+Type the following lines into a program called {\tt die\_markov.m}.
+Or, save {\tt dna\_markov.m} as {\tt die\_markov.m} and make changes.
+
+\item {\tt A  = [[.95 .05]; [.1 .9]];} \hfill
+\item {\tt Pi=[];} \hfill Clear out any old value of {\tt Pi}
+\item {\tt Pi(1) = rando([1 1]/2);} \hfill
+\item {\tt for i=1:74,} \hfill
+\item {\tt ~~Pi(i+1) = rando(A(Pi(i),:));} \hfill
+\item {\tt end} \hfill
+\item {\tt show(Pi,'FL')} \hfill
+
+At each step, whichever die is being used will be rolled, and all the
+gamblers get to see is what was number was rolled.
+The matrix {\tt E} will be used to store the probabilities of the various
+outcomes of rolling the die.
+The first row will be for the fair die, the second for the loaded die.
+Modify the program to read:
+
+\item {\tt A  = [[.95 .05]; [.1 .9]];} \hfill
+\item {\tt E  = [[1 1 1 1 1 1]/6; [1 1 1 1 1 5]/10];} \hfill A loaded die
+lands on 6 with probability 0.5.
+\item {\tt Pi=[];} \hfill Clear out any old value of {\tt Pi}
+\item {\tt x=[];} \hfill Clear out any old value of {\tt x}
+\item {\tt Pi(1) = rando([1 1]/2);} \hfill
+\item {\tt x(1) ~= rando(E(Pi(1),:));} \hfill Use row {\tt Pi(1)} of {\tt
+E} to get the probabilities when rolling the die.
+\item {\tt for i=1:74,} \hfill
+\item {\tt ~~Pi(i+1) = rando(A(Pi(i),:));} \hfill
+\item {\tt ~~x(i+1) ~= rando(E(Pi(i+1),:));} \hfill
+\item {\tt end} \hfill
+\item {\tt show(Pi,'FL')} \hfill
+\item {\tt show(x,'123456')} \hfill
+
+When you run the program, you will see a sequence of F's and L's
+representing which die was used and directly below these, the number which
+was rolled at each step.
+
+\hspace*{-0.5in}
+{\bf The Viterbi algorithm}
+
+The Viterbi algorithm is described on page 55 of the textbook.
+Given the matrices {\tt A} and {\tt E} and an observed sequence (the rolls
+of the die), it estimates what the hidden states were (fair or loaded).
+
+{\tt dice.m} is a program that switches between fair and loaded dice, rolls
+the dice, then runs the Viterbi algorithm to guess whether a fair or loaded
+die was used, and marks the errors with a {\tt *}.
+
+\item {\tt dice(75,1)} \hfill 75 die rolls.
+\item {\tt dice(75,2)} \hfill 75 die rolls, but at each step, the die is
+rolled twice.  This makes it easier to tell whether the die was fair or loaded.
+\item {\tt dice(75,5)} \hfill 5 rolls at each step.
+
+\end{list}
+\vfill
+\end{document}
