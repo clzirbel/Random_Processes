@@ -49,5 +49,6 @@ while 1 > 0,                    % continue forever
     
   end
 
+  disp('Press any key to simulate again, press Control-C to break')
   pause                        % wait for a key to be pressed before going to the next simulation
 end
