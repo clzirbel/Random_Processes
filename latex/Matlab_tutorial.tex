@@ -1,8 +1,14 @@
-\documentstyle[11pt]{report}
-\renewcommand{\baselinestretch}{1.1}
-\input handout_header
+\input hhletter                     % format for 8.5 by 11 paper
+%\input hhsmall                      % format for viewing on phones and tablets
 
-\begin{center} \mbox{\sc
+\usepackage{hyperref}              % causes yap to not preview .dvi files
+%\newcommand{\url}[1]{{\tt #1}}      % clumsy workaround
+
+\begin{document}
+
+\renewcommand{\baselinestretch}{1.1}
+
+\begin{center} {\sc
 Matlab tutorial - Math 4450/5450 - Spring 2015 - Zirbel}\\
 \end{center}
 
@@ -55,6 +61,20 @@ want to try this with more than 1000 numbers.
 
 \hspace*{-0.5in}
 {\bf Getting some Matlab programs}
+
+\item I have posted a number of Matlab programs on Github.  To find them, google ``Github zirbel random processes'' or go to \url{https://github.com/clzirbel/Random\_Processes} and find the Download Zip button or go straight to \url{https://github.com/clzirbel/Random\_Processes/archive/master.zip} to get the .zip file.
+Unzip the file and save it in an accessible place.
+
+\item In Matlab, use the dropdown above the command window to set the working directory to the Matlab folder in the folder you downloaded from Github.
+
+\item Open the file {\tt gambler\_outcome.m}.  It will open in an editor window.  It is a good idea to read the commands in it and start to understand what they do.  I have added many comments to the commands in the file, separated from the commands by the \% character.
+
+\item {\tt pwd} \hfill Figure out what Matlab considers to be the working directory.  This is where it looks for programs and where it writes out files.  
+
+\item {\tt gambler\_outcome} \hfill Matlab will load the file and run the commands in it.  When you are done running the program, press Control-C to break execution.
+
+\item Run the program {\tt gambler\_outcome} multiple times, then quit.  In the program, find the line that pauses after each step, set the pause time to 0.0, and then run it again.  Now each game will take less time to generate and draw, and you can get a better sense of what they look like.
+
 
 \end{list}
 \vfill
