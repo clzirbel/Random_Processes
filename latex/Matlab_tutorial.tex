@@ -1,5 +1,5 @@
-\input hhletter                     % format for 8.5 by 11 paper
-%\input hhsmall                      % format for viewing on phones and tablets
+%\input hhletter                     % format for 8.5 by 11 paper
+\input hhsmall                      % format for viewing on phones and tablets
 
 \usepackage{hyperref}              % causes yap to not preview .dvi files
 %\newcommand{\url}[1]{{\tt #1}}      % clumsy workaround
@@ -15,14 +15,14 @@ Matlab tutorial - Math 4450/5450 - Spring 2015 - Zirbel}\\
 \renewcommand{\blist}[1]{\begin{list}{{\arabic{enumi}:}}{\usecounter{enumi}\setlength{\itemsep}{#1}}}
 \renewcommand{\elist}{\end{list}}
 
+Matlab is available in computer labs on the BGSU campus.
+To find which ones, go to 
 When you start Matlab, the {\bf command window} appears, with $\gg$ as the prompt.
 The commands below should be typed at the prompt.
 Don't type the line numbers or the comments at the ends of the lines.
+If you are using Octave
 
-\vspace*{0.2in}
-\hspace*{-0.3in}
-{\bf Matlab basics}
-\vspace*{-0.07in}
+\minorheading{Matlab basics}
 \blist{-0.05in}
 \item {\tt 2*9}       \hfill Matlab can be used as a calculator.
 \item {\tt sin(1)}
@@ -34,8 +34,9 @@ numbers, uniformly distributed between 0 and 1.  {\tt x} is like a column
 of cells in a spreadsheet.  It is called a {\bf vector} or a 10 by 1 {\bf
 matrix}.
 \item {\tt x+5}       \hfill Add 5 to each entry of {\tt x}.
-\item {\tt 1000*x}       \hfill Multiply each entry of {\tt x} by 100.
-\item {\tt x=rand(10,7)} \hfill A 10 by 7 matrix of random numbers.  To repeat this, or any other command, hit the up arrow as many times as you want.
+\item {\tt 100*x}       \hfill Multiply each entry of {\tt x} by 100.
+\item {\tt ceil(100*x)} \hfill Round up to the next integer. This is how you generate \new random numbers uniformly distributed from 1 to 100.
+\item {\tt x=rand(10,7)} \hfill A 10 by 7 matrix of random numbers.  To repeat this, or any other command, \new hit the up arrow as many times as you want.
 \item {\tt x=rand(100,1)} \hfill Go ahead, try something larger than 100.
 \item {\tt x=rand(100,1);} \hfill Use a semicolon to suppress the output.
 \item {\tt max(x)} \hfill
@@ -44,6 +45,16 @@ matrix}.
 \item {\tt median(x)} \hfill
 \item {\tt cumsum(x)} \hfill A vector of cumulative sums of entries of {\tt x}.
 \item {\tt y=sort(rand(10,1))} \hfill Sort another 10 random numbers.
+
+\minorheadinginlist{Matrices}
+\item {\tt P = zeros(20,20)} \hfill Examine {\tt P} to see what you get.
+\item {\tt sum(P)} \hfill Calculate the sums of the columns of {\tt P}.
+\item {\tt sum(P')} \hfill Transpose first to calculate the sums of the rows of {\tt P}.
+\item {\tt P(1,2) = 0.5} \hfill Set one value in the matrix {\tt P}.
+\item {\tt P(1,1:3) = 1/3} \hfill Set three values in the matrix {\tt P}.
+\item {\tt P(10,:)} \hfill Display row 10 of the matrix {\tt P}.
+
+\minorheadinginlist{Plotting points and histograms}
 \item {\tt plot(x)} \hfill Plot the values of {\tt x} against numbers 1, 2, ...
 \item {\tt hist(x)} \hfill Make a histogram of the values of {\tt x}.
 \item {\tt hist(x,30)} \hfill Use 30 bins instead of the default 10.
@@ -55,13 +66,13 @@ some are as large as 6.  The numbers in {\tt y} have what is called the
 \item {\tt x=rand(10000,1)} \hfill You typed a command similar to this a
 while ago.  Type {\tt x=} and then the up arrow to bring it back, then edit
 it to change 100 to 10000.
+\item {\tt hist(-log(x),30)} \hfill Looks better now.
 \item {\tt z=randn(1000,1);} \hfill Generate 1000 normally distributed numbers
 \item {\tt hist(z,30)} \hfill The histogram is bell--shaped.  You might
 want to try this with more than 1000 numbers.
+\item {\tt help hist} \hfill To get help, type ``help'' followed by the name of a command.  Sometimes \new you can guess what you want and then read about it.  Or google your question, like ``matlab hist''.
 
-\hspace*{-0.5in}
-{\bf Getting some Matlab programs}
-
+\minorheadinginlist{Getting some Matlab programs}
 \item I have posted a number of Matlab programs on Github.  To find them, google ``Github zirbel random processes'' or go to \url{https://github.com/clzirbel/Random\_Processes} and find the Download Zip button or go straight to \url{https://github.com/clzirbel/Random\_Processes/archive/master.zip} to get the .zip file.
 Unzip the file and save it in an accessible place.
 

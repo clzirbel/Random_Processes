@@ -42,7 +42,7 @@ Don't type the line numbers or the comments at the ends of the lines.
 \new This sets the value of {\tt x} equal to {\tt exp(1)}.
 \item {\tt x}         \hfill This displays the value of {\tt x}
 \item {\tt x <- exp(1)} \hfill Alternate way to assign a value to {\tt x}, often used by people writing about R.  \new But why use two characters when one will do?
-\item {\tt x=runif(10)} \hfill {\tt x} is a collection of 10 random
+\item {\tt x=runif(10)} \hfill {\tt x} is a collection of 10 pseudorandom
 numbers, uniformly distributed between 0 and 1. \new {\tt x} is like a row
 of cells in a spreadsheet.  It is called a {\bf vector}.
 \item {\tt x+5}       \hfill Add 5 to each entry of {\tt x}.
@@ -56,21 +56,26 @@ of cells in a spreadsheet.  It is called a {\bf vector}.
 \item {\tt median(x)} \hfill
 \item {\tt sort(x)} \hfill Sort x in increasing order.
 \item {\tt cumsum(x)} \hfill A vector of cumulative sums of entries of {\tt x}.
+
+\minorheadinginlist{Matrices}
 \item {\tt P = matrix(0,ncol=20,nrow=20)} \hfill Examine {\tt P} to see what you get.
 \item {\tt rowSums(P)} \hfill Calculate the sums of the rows of {\tt P}.
 \item {\tt P[1,2] = 0.5} \hfill Set one value in the matrix {\tt P}.
+\item {\tt P[1,1:3] = 1/3} \hfill Set three values in the matrix {\tt P}.
+\item {\tt P[10,]} \hfill Display row 10 of the matrix {\tt P}.
 
 \minorheadinginlist{Plotting points and histograms}
 \item {\tt plot(x,pch=16)} \hfill Plot the values of {\tt x} against numbers 1, 2, ... as filled dots.
-\item {\tt plot(cumsum(x),type="l")} \hfill Plot the cumulative sum against the numbers 1, 2, ..., \new connecting points with lines.
+\item {\tt plot(cumsum(x),type="l")} \hfill Plot the cumulative sum against the numbers 1, 2, ..., \new connecting points with lines. Lowercase L.
 \item {\tt dev.off()} \hfill Clear the plotting window.
 \item {\tt hist(x)} \hfill Make a histogram of the values of {\tt x}.
 \item {\tt hist(x,breaks=20)} \hfill Use 20 bins instead of the default 10.
 \item {\tt y=-log(x)} \hfill Take the natural logarithm of the entries of
 {\tt x}.
 \item {\tt hist(y,breaks=20)} \hfill Looks like an exponential distribution.  It will look better \new with more data points, so re-define {\tt x} and do it again.
-
-\item {\tt ?hist} \hfill To get help, type ? followed by the name of a command.  Sometimes \new you can guess what you want and then read about it.  Or google your question.
+\item {\tt x=rnorm(10000)} \hfill Normally-distributed pseudorandom numbers.
+\item {\tt hist(x,breaks=30)} \hfill A bell-shaped distribution. 
+\item {\tt ?hist} \hfill To get help, type ? followed by the name of a command.  Sometimes \new you can guess what you want and then read about it.  Or google your question, like ``R hist''.
 
 \item {\tt up arrow} \hfill Press the up arrow to return to previous commands, hit enter to run them again.
 \item {\tt control-L)} \hfill On a PC, clear all the old commands in the console window.
@@ -94,26 +99,26 @@ Unzip the file and save it in an accessible place.
 \item {\tt P = gambler\_transition\_matrix()} \hfill Set up the transition matrix for Gambler's wealth.
 \item {\tt P} \hfill Show the matrix.
 
-\item {\tt P = gambler\_transition\_matrix(10,20,0.5)} \hfill Specifically tell R what initial wealth, opponent wealth, and win probability to use.  Check that {\tt P} looks the same.
+\item {\tt P = gambler\_transition\_matrix(10,20,0.5)} \hfill Specifically tell R what initial wealth, opponent wealth, \new and win probability to use.  Check that {\tt P} looks the same.
 
-\item {\tt P = gambler\_transition\_matrix(5,5,0.7)} \hfill Set up a transition matrix for a different gambling situation.  Look at {\tt P} now.
+\item {\tt P = gambler\_transition\_matrix(5,5,0.7)} \hfill Set up a transition matrix for a \new different gambling situation.  Look at {\tt P} now.
 
 \item Read through the file {\tt gambler\_functions.R}.  There are several function definitions, for example, this one:  {\tt gambler\_transition\_matrix = function(m=10,n=20,p=0.5)}.  It says that there are three inputs, which will be called {\tt m, n,} and {\tt p} within the function.  If the user does not give values for them, the default values will be 10, 20, and 0.5, respectively.
 
 \minorheadinginlist{Matrix operations and plotting}
 
 \item {\tt install.packages("expm")} \hfill Do this once to install the package on your computer.
-\item {\tt library(expm)} \hfill Do this once per R session to use the expm library, which allows R to calculate matrix powers.  If you source matrix\_functions.R (see below), then this is done for you.
+\item {\tt library(expm)} \hfill Do this once per R session to use the expm library, which allows R to calculate \new matrix powers.  If you source matrix\_functions.R (see below), then this is done for you.
 \item {\tt install.packages("gplots")} \hfill Do this once to install the package on your computer.
 \item {\tt source("matrix\_functions.R")} \hfill Load functions for matrix calculations.
 
-\item {\tt print\_matrix(P)} \hfill Show the matrix so that it can be copied and pasted into another program easily.
+\item {\tt print\_matrix(P)} \hfill Show the matrix {\tt P} so that it can be copied and pasted into another program easily.
 
-\item {\tt transition\_matrix\_powers(P,0)} \hfill Show six powers of P.  If you get ``Error in plot.new() : figure margins too large'' try making the figure window larger.
+\item {\tt transition\_matrix\_powers(P,0)} \hfill Show six powers of {\tt P}.  If you get ``Error in plot.new() : figure \new margins too large'' try making the figure window larger.
 
-\item {\tt P \%\^{}\% 20} \hfill Calculate the 20th power of P.  This uses the expm package.
+\item {\tt A = P \%\^{}\% 20} \hfill Calculate the 20th power of {\tt P} and store as a new matrix {\tt A}.  This uses the expm package.
 
-\item {\tt pdf("filename.pdf",width=8.5,height=11)} \hfill If you want to save a plot as a PDF, type this command, then make the plot, and then do the next command to actually write the file.
+\item {\tt pdf("filename.pdf",width=8.5,height=11)} \hfill If you want to save a plot as a PDF, type this command, \new then make the plot, and then do the next command to actually write the file.
 \item {\tt dev.off()} \hfill Do this after plotting, to save the file.
 
 \end{list}
