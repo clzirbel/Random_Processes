@@ -30,14 +30,14 @@ plot_matrix_as_image = function(M,minimumstate=1,titletext="") {
                     seq(1,0,length=256),  # Green
                     seq(1,0,length=256))  # Blue
   
-  image(x=1:nr, y=1:nc, z=D, axes=FALSE, frame.plot=TRUE, col=grayscale, main=titletext, xlab=NA, ylab=NA)
+  image(x=1:nc, y=1:nr, z=D, axes=FALSE, frame.plot=TRUE, col=grayscale, main=titletext, xlab=NA, ylab=NA)
   #Add axis labels, use las=2 for perpendicular text:
-  axis(1, 1:nr, labels=(1:nr) - 1 + minimumstate, las=2)
-  axis(2, 1:nc, labels=(nc:1) - 1 + minimumstate, las=2)
+  axis(1, 1:nc, labels=(1:nc) - 1 + minimumstate, las=2)
+  axis(2, 1:nr, labels=(nr:1) - 1 + minimumstate, las=2)
   #Get a nice border around the image: 
   box()
   #Add a solid black grid:
-  grid(nx=nr, ny=nc, col="black", lty="solid") 
+  grid(nx=nc, ny=nr, col="black", lty="solid") 
 }
 
 # transition_matrix_powers plots six powers of a given transition matrix

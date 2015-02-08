@@ -11,6 +11,6 @@ for (i in 1:10) {
 
 s = 0
 for (i in 1:10) {
-  s = s + i
+  s = s + i^2
   print(s)
 }
