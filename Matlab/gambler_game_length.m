@@ -34,3 +34,7 @@ fprintf('Average game length is %4.4f\n', EN);
 
 orient tall
 saveas(gcf,'gambler_game_length.pdf');
+
+figure(2)
+clf
+plot(log(n),log(pmf),'k.');

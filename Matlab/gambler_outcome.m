@@ -43,7 +43,7 @@ while 1 > 0,                    % continue forever
 
     figure(1)                  % bring the figure window to the front
     drawnow                    % graph any changes now
-    pause(0.1)                 % pause for this many seconds after each step
+%    pause(0.1)                 % pause for this many seconds after each step
 
     i = i + 1;                 % increase the step number by 1
     
