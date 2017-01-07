@@ -4,14 +4,14 @@ N = 10000                   # length of strings to generate
 
 # Method 1
 S = ''                      # start with an empty string
-for (i in 1:N) {
-  if (runif(1) < 0.5) {
-    S = paste(S,'H',sep='')
-  } else {
-    S = paste(S,'T',sep='')
+for (i in 1:N) {            # make the variable i take values 1 to N
+  if (runif(1) < 0.5) {     # generate a random uniform(0,1) variable
+    S = paste(S,'H',sep='') # if it is less than 0.5, add H to S
+  } else {                  # otherwise,
+    S = paste(S,'T',sep='') # add T to S
   }
 }
-allStrings = S
+allStrings = S              # store the resulting sequence
 
 # Method 2
 S = ''
@@ -22,10 +22,10 @@ for (i in 1:N) {
     S = paste(S,'T',sep='')
   }
 }
-allStrings = c(allStrings,S)
+allStrings = c(allStrings,S) # append the new string to the list of all strings
 
 # Method 3
-S = ''                      # start with an empty string
+S = ''
 for (i in 1:N) {
   if ((i %% 2) == 0) {      # if i is even; i %% 2 is the remainder
     if (runif(1) < 0.2) {
@@ -46,7 +46,7 @@ allStrings = c(allStrings,S)
 # Method 4
 S = ''
 for (i in 1:N) {
-  if (runif(1) < i/N) {
+  if (runif(1) < i/N) {     # this is where this method differs from method 1
     S = paste(S,'H',sep='')
   } else {
     S = paste(S,'T',sep='')
@@ -55,11 +55,11 @@ for (i in 1:N) {
 allStrings = c(allStrings,S)
 
 # Method 5
-S = ''                      # start with an empty string
+S = ''
 for (i in 1:(N/10)) {
   s = sample(c('H','H','H','H','H','T','T','T','T','T'),10) # sample without replacement
   s = paste(s,collapse='')              # reduce to a string
-  S = paste(S,s,sep='')
+  S = paste(S,s,sep='')                 # append new string to S
 }
 allStrings = c(allStrings,S)
 
@@ -71,7 +71,7 @@ if (runif(1) < 0.5) {
   S = paste(S,'T',sep='')
 }
 for (i in 2:N) {
-  if (substr(S,i-1,i-1) == 'H') {
+  if (substr(S,i-1,i-1) == 'H') {  # pull out character i-1 in S
     if (runif(1) < 0.01) {
       S = paste(S,'H',sep='')
     } else {
@@ -114,11 +114,11 @@ allStrings = c(allStrings,S)
 # Method 8
 S = ''
 while (nchar(S) <= N) {      # keep doing this until S is long enough
-  L = sample(5:10,1)         # generate a random integer from 5 to 10
+  L = sample(5:10,1)         # generate one random integer from 5 to 10
   for (i in 1:L) {
     S = paste(S,'H',sep='')
   }
-  L = sample(5:10,1)         # generate a random integer from 5 to 10
+  L = sample(5:10,1)         # generate one random integer from 5 to 10
   for (i in 1:L) {
     S = paste(S,'T',sep='')
   }
@@ -136,7 +136,8 @@ for (i in 1:N) {
   }
 }
 while (length(grep('HHHHH',S)) > 0 || length(grep('TTTTT',S)) > 0) {
-  S = gsub('HHHHH','HTTTH',S)
+                                  # count the number of occurrences of HHHHH and TTTTT
+  S = gsub('HHHHH','HTTTH',S)     # replace HHHHH with HTTTH
   S = gsub('TTTTT','THHHT',S)
 }
 allStrings = c(allStrings,S)
@@ -263,7 +264,6 @@ for (i in 1:N) {
   }
 }
 allStrings = c(allStrings,S)
-
 
 # write out the sequences to separate files, with scrambled numbers
 numMethods = length(allStrings)
